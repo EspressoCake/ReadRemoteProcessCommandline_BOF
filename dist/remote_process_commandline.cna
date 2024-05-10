@@ -1,0 +1,26 @@
+beacon_command_register(
+    "remote_process_commandline",
+    "Attempts to retrieve the remote commandline of a provided process ID.",
+    "Synopsis: cReadRemoteProcessCmdline  <target PID>"
+);
+
+alias remote_process_commandline 
+{
+    if(size(@_) == 2)
+    {
+        local('$barch $handle $data $args $target_pid');
+        $barch  = barch($1);
+        $handle = openf(script_resource("remote_process_commandline. $+ $barch $+ .o"));
+        $data = readb($handle, -1);
+        
+        closef($handle);
+
+        $args = bof_pack($1, "i", $2);
+
+        beacon_inline_execute($1, $data, "go", $args);
+    }
+    else
+    {
+        berror($1, "You must provide a process ID number only.");
+    }
+}
