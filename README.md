@@ -3,8 +3,8 @@
 
 #### Why:
 A few use-cases that immediately come to mind:
-  1: Secondary selection for process injection
-  2: Inspection of remote commandline arguments to identify possible configuration paths for applications 
+- Secondary selection for process injection
+- Inspection of remote commandline arguments to identify possible configuration paths for applications 
 
 #### Building
 ```bash
